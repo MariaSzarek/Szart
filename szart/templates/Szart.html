@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+
+{% block title %}Szart{% endblock %}
+
+{% block strona %}
+  <header>
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+
+        <div class="carousel-inner text-light text-center">
+          <div class="carousel-item carousel-img-two active">
+            <div class="carousel-caption h-100 p-5 d-flex flex-column justify-content-end justify-content-md-center align-items-center">
+              <p class="display-3">Malarstwo</p>
+            </div>
+            <div class="hero-shadow"></div>
+          </div>
+          <div class="carousel-item carousel-img-three">
+            <div class="carousel-caption h-100 p-5 d-flex flex-column justify-content-end justify-content-md-center align-items-center">
+              <p class="display-3">Ceramika</p>
+            </div>
+            <div class="hero-shadow"></div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </header>
+
+   <main>
+      <section class="py-5 projects mt-5 mb-5">
+
+        <div class="container">
+          <div class="row">
+            {% for item in items %}
+              <div class="col-md-4 col-lg-3">
+                <div class="card mb-3">
+                    <img src="/media/{{ item.image }}" alt="{{ item.image }}">
+                    <div class="card-body">
+                    <h3 class="p-3">{{ item.title }}</h3>
+                    <p class="p-3">
+                      {{ item.description }}
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <a href="{% url 'item' item.id %}">
+                          <button class="btn btn-outline-dark px-4">pokaż</button></a>
+                      <a href="">
+                          <button class="btn btn-outline-dark px-4 bi bi-cart2"> dodaj</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+
+{% endblock %}

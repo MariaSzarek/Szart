@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block title %}{{items.title}}{% endblock %}
+
+{% block strona %}
+
+
+
+    <div class="container py-5">
+        <div class="row m-0 align-items-flex-start justify-content-center">
+            <div class="p-2 col-md-4">
+                <img src="/media/{{ items.image }}" alt="{{ items.image }}" class="img-fluid rounded-start">
+            </div>
+
+            <div class="p-2 col-md-4">
+                <h2 class="m-5 mt-0">{{ items.title }}</h2>
+                <p class="mt-5 m-5">
+                    {{ items.description }}
+                </p>
+                <div class="px-5 d-flex align-items-center">
+
+                      <button class="btn btn-outline-dark px-4 "><i class="bi bi-person"></i> Dodaj do ulubionych</button></a>
+                  <a href=""></div>
+                  <div class="px-5 mt-3 d-flex align-items-center justify-content-between">
+                      <button class="btn  btn-outline-dark px-4 bi bi-cart2"> Dodaj do koszyka</button></a>
+                </div>
+            </div>
+        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load bootstrap5 %}
+{% block title %}Szart{% endblock %}
+
+{% block strona %}
+<div class="card m-5" style="width: 18rem;">
+  <div class="card-body">
+     <h5 class="card-title"><i class="fa-solid fa-user"></i> Zaloguj się  </h5>
+
+      <form method="post" class="py-5">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+          <button type="submit" class="btn btn-light"> Zaloguj<i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+        {% endbuttons %}
+      </form>
+  </div>
+</div>
+ {% endblock %}
