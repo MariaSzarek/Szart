@@ -17,6 +17,9 @@ class Product(models.Model):
     description = models.TextField(default="")
     image = models.ImageField(upload_to="images", null=False, blank=False, default='')
     type = models.PositiveSmallIntegerField(default=0, choices=TYPE)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
+    created = models.DateTimeField(auto_now_add=True)
+
 
 
     def __str__(self):
