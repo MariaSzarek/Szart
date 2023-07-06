@@ -4,7 +4,7 @@
 
 {% block strona %}
   <header>
-      <div id="carouselExampleCaptions" class="carousel slide">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -34,29 +34,53 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </header>
+  </header>
 
    <main>
-      <section class="py-5 projects mt-5 mb-5">
+        {% if added_item_to_cart %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <p>Dodano {{ added_item_to_cart.title }} do koszyka. Przejdź do
+                    <a href="{% url 'cart' %}" class="alert-link">koszyka</a>
+                </p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
 
+      <section class="py-5 projects mt-5 mb-5">
         <div class="container">
           <div class="row">
             {% for item in items %}
               <div class="col-md-4 col-lg-3">
                 <div class="card mb-3">
-                    <img src="/my_media/{{ item.image }}" alt="{{ item.image }}">
+                    <a href="{% url 'item' item.id %}">
+                        <img src="/my_media/{{ item.image }}" alt="{{ item.image }}" >
+                    </a>
                     <div class="card-body">
-                    <h3 class="p-3">{{ item.title }}</h3>
-                    <p class="p-3">
-                      {{ item.description }}
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <a href="{% url 'item' item.id %}">
-                          <button class="btn btn-outline-dark px-4">pokaż</button></a>
-                      <a href="">
-                          <button class="btn btn-outline-dark px-4 bi bi-cart2"> dodaj</button></a>
+                        <a href="{% url 'item' item.id %}" class="title-link">
+                            <h3 class="p-3 my-color ">{{ item.title }}</h3></a>
+                        <h4 class="p-3">{{ item.price }} PLN</h4>
+                        <p class="p-3">
+                        {{ item.description }}
+                        </p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <form action="{% url 'add_to_fav' item.id %}" method="POST">
+                                {% csrf_token %}
+                                {% if user.is_authenticated %}
+                                    {% if item in liked_products %}
+                                        <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart-fill" name="action" value="remove"> Ulubione</button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                                    {% endif %}
+                                {% else %}
+                                    <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                                {% endif %}
+                            </form>
+                            <form action="{% url 'add_to_cart' item.id %}" method="POST">
+                              {% csrf_token %}
+                              <button id="submitBtn" type="submit" class="btn btn-outline-dark px-4 bi bi-cart2"> Koszyk</button>
+                            </form>
+                        </div>
                     </div>
-                  </div>
                 </div>
               </div>
             {% endfor %}
@@ -64,7 +88,7 @@
         </div>
 
       </section>
-    </main>
+   </main>
 
 
 {% endblock %}

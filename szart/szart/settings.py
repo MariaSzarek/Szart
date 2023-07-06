@@ -125,7 +125,7 @@ MEDIA_ROOT = 'my_media'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'szart'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'szart'
 
 
 # Default primary key field type

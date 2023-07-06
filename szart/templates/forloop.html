@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<table class="table">
+  {% for item in cart_items %}
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td><img src="/my_media/{{ item.image }}" alt="{{ item.image }}"></td>
+        <td>{{ item.title }}</td>
+        <td>{{item.price}}</td>
+        <td>
+          <form action="{% url 'del_from_cart' item.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark px-4 bi bi-cart2"> usuń z koszyka</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+</table>

@@ -1,37 +1,53 @@
 {% extends 'main.html' %}
 
-{% block title %}{{items.title}}{% endblock %}
+{% block title %}{{item.title}}{% endblock %}
 
 {% block strona %}
 
 
 
-    <div class="container py-5">
+    <div class="container py-5 items">
         <div class="row m-0 align-items-flex-start justify-content-center">
             <div class="p-2 col-md-4">
-                <img src="/media/{{ items.image }}" alt="{{ items.image }}" class="img-fluid rounded-start">
+                <img src="/my_media/{{ item.image }}" alt="{{ item.image }}" class="img-fluid rounded-start">
             </div>
 
             <div class="p-2 col-md-4">
-                <h2 class="m-5 mt-0">{{ items.title }}</h2>
+                <h3 class="m-5 mt-0 my-color items">{{ item.title }}</h3>
+                <h4 class="m-5 mt-0">{{ item.price }}</h4>
                 <p class="mt-5 m-5">
-                    {{ items.description }}
+                    {{ item.description }}
                 </p>
                 <div class="px-5 d-flex align-items-center">
+                    <form action="{% url 'add_to_fav' item.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                            {% if item in liked_products %}
+                                <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart-fill" name="action" value="remove"> Ulubione</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                            {% endif %}
+                        {% else %}
+                            <button type="submit" class="btn btn-outline-dark px-4 bi bi-heart" name="action" value="add"> Ulubione</button>
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="px-5 mt-3 d-flex align-items-center justify-content-between">
+                        <form action="{% url 'add_to_cart' item.id %}" method="POST">
+                          {% csrf_token %}
+                          <button id="submitBtn" type="submit" class="btn btn-outline-dark px-4 bi bi-cart2"> Koszyk</button>
+                        </form>
 
-                      <button class="btn btn-outline-dark px-4 "><i class="bi bi-person"></i> Dodaj do ulubionych</button></a>
-                  <a href=""></div>
-                  <div class="px-5 mt-3 d-flex align-items-center justify-content-between">
-                      <button class="btn  btn-outline-dark px-4 bi bi-cart2"> Dodaj do koszyka</button></a>
                 </div>
             </div>
+
+
+
         </div>
 
 
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    </div>
 
 
 {% endblock %}
