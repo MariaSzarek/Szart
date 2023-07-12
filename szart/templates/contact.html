@@ -10,24 +10,25 @@
       </section>
       <section class="contact py-5">
         <div class="container">
-          <div class="text-center py-5">
-            <p clas="display-3">Napisz do nas</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem, recusandae.</p>
-          </div>
-
-
+          {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-success">{{ message }}</div>
+              {% endfor %}
+          {% endif %}
 
           <div class="row">
             <div class="col-md-5 col-lg-4">
               <div class="border p-5 mb-4 text-center">
                 <h2>dane kontaktowe</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <p class="mt-4 fw-bold text-uppercase">adres</p>
+                <br>
+                <p class="mt-5 fw-bold text-uppercase">adres</p>
                 <p>ul. Jakakolwiek 1</p>
                 <p> 00-000 Wrocław</p>
-                <p class="mt-4 fw-bold text-uppercase">telefon</p>
+                <br>
+                <p class="mt-5 fw-bold text-uppercase">telefon</p>
                 <p>+48 000-000-000</p>
-                <p class="mt-4 fw-bold text-uppercase">e-mail</p>
+                <br>
+                <p class="mt-5 fw-bold text-uppercase">e-mail</p>
                 <p>jakikolwiek@gmail.com</p>
                 <div class="logo contact-logo mt-5 pt-4 mb-n3 border-top">
                   <i class="fas fa-palette my-color"></i></i>S<span class="my-color">z</span></span>ART</a>
@@ -36,62 +37,61 @@
             </div>
 
             <div class="col-md-7 col-lg-8">
-              <div class="border p-5 text-center">
-                <h2>formularz kontaktowy</h2>
-                <form action="{% url 'kontakt' %}" method="POST" enctype="multipart/form-data">
-                  <div class="mt-3">
-                    <button type="sumbit" class="btn btn-primary">Wyślij</button>
-                  </div>
-                </form>
-                <form class="mt-5">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group mb-4">
-                        <label>Imię i nazwisko</label>
-                        <input type="text" class="form-control">
+              <div class="border p-5">
+                <h2 class="text-center">formularz kontaktowy</h2>
+                  <form method="POST" class="mt-5">
+                    {% csrf_token %}
+                      <div class="mb-4">
+                        <div class="row">
+                          <div class="col-6 text-end text-uppercase">
+                            <label>Imię i nazwisko</label>
+                          </div>
+                          <div class="col-6">
+                            {{ form.nadawca }}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group mb-4">
-                        <label>Adres mailowy</label>
-                        <input type="text" class="form-control">
+                      <div class="mb-4">
+                        <div class="row">
+                          <div class="col text-end text-uppercase">
+                            <label>Adres email</label>
+                          </div>
+                          <div class="col">
+                            {{ form.email }}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group mb-4">
-                        <label>Malarstwo czy ceramika?</label>
-                        <select class="form-select">
-                          <option selected></option>
-                          <option>Malarstwo</option>
-                          <option>Ceramika</option>
-                        </select>
+                      <div class="mb-4">
+                        <div class="row">
+                          <div class="col text-end text-uppercase">
+                            <label>Temat</label>
+                          </div>
+                          <div class="col">
+                            {{ form.temat }}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group mb-4">
-                        <label>W jakiej sprawie?</label>
-                        <select class="form-select">
-                          <option selected></option>
-                          <option>Zakup</option>
-                          <option>Reklamacja</option>
-                        </select>
+                      <div class="col text-center text-uppercase mb-4">
+                        <label class="mb-3">Treść wiadomości</label>
+                        <div class="col">
+                          {{ form.tresc }}
+                        </div>
                       </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                      <button type="submit" class="btn btn-primary">Wyślij</button>
                     </div>
-
-
-                    <div class="col-12">
-                      <label>Wpisz treść wiadomośći</label>
-                      <textarea class="form-control" rows="6"></textarea>
-                    </div>
-                    <div class="mt-3">
-                      <button class="btn btn-primary">Wyślij</button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
               </div>
             </div>
+
+
+
+
+
+
+
+
+
           </div>
         </div>
       </section>

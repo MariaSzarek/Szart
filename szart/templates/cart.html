@@ -32,15 +32,13 @@
                     <td></td>
                     <td>{{ total_price }}</td>
                     <td>
-                      <form action="{% url 'szart' %}" method="POST">
+                      <form action="{% url 'zamowienie' %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-dark px-4">Przejdź do kasy</button>
+                        <button type="submit" class="btn btn-outline-dark px-4">Zamawiam i płacę</button>
                       </form>
                     </td>
                   </tr>
-
                 </tfoot>
-
             </table>
             {% else %}
             <p>Koszyk jest pusty.</p>

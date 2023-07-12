@@ -23,7 +23,7 @@
                             </form>
                             <form action="{% url 'add_to_fav' item.id %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-dark px-4 bi bi-cart2 mt-2"> usuń z ulubionych</button>
+                                <button type="submit" class="btn btn-outline-dark px-4 mt-2"> usuń z ulubionych</button>
                             </form>
                         </td>
                       </tr>

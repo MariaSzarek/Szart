@@ -1,5 +1,5 @@
 from django.urls import path
-from szartapp.views import index, item_response, show_paintings, show_ceramics, contact_response, add_to_fav, cart, add_to_cart, favorite_response, del_from_cart
+from szartapp.views import index, item_response, show_paintings, show_ceramics, contact_response, add_to_fav, cart, add_to_cart, favorite_response, del_from_cart, place_order
 
 urlpatterns = [
     path('szart/', index, name='szart'),
@@ -12,5 +12,6 @@ urlpatterns = [
     #path('del_from_fav/<int:id>/', del_from_fav, name='del_from_fav'),
     path('del_from_cart/<int:id>/', del_from_cart, name='del_from_cart'),
     path('ulubione/', favorite_response, name='favorite'),
-    path('cart/', cart, name='cart')
+    path('koszyk/', cart, name='cart'),
+    path('zamowienie/', place_order, name='zamowienie')
 ]
