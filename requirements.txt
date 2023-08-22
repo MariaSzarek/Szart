@@ -6,4 +6,3 @@ Pillow==9.5.0
 soupsieve==2.4.1
 sqlparse==0.4.4
 tzdata==2023.3
-gunicorn==21.2.0
